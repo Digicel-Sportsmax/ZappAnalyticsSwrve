@@ -1,0 +1,3 @@
+rootProject.name='SwrveAnalyticsPlugin'
+include ':swrveplugin-android'
+project(':swrveplugin-android').projectDir = new File('swrveplugin-android')

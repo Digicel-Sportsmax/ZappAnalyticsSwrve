@@ -1,0 +1,46 @@
+{
+  "api": {
+    "require_startup_execution": false,
+    "class_name": "SwrveAnalyticsPlugin.SwrveAnalyticsAgent",
+    "modules": []
+  },
+  "dependency_repository_url": [
+    {
+      "url": "https://github.com/hussein-yassine/ZapAnalyticsPluginSwrve-Android.git"
+    }
+  ],
+  "platform": "android",
+  "author_name": "Hussein Yassine",
+  "author_email": "hussein.m.yassin@gmail.com",
+  "manifest_version": "0.0.1",
+  "name": "ZappAnalyticsPluginSwrve",
+  "description": "ZappAnalyticsPluginSwrve",
+  "type": "analytics",
+  "identifier": "ZappAnalyticsPluginSwrve",
+  "ui_builder_support": true,
+  "screen": false,
+  "dependency_name": "ZappAnalyticsPluginSwrve",
+  "dependency_version": "0.0.1",
+  "whitelisted_account_ids": ["5af949534da8f300080050f9"],
+  "min_zapp_sdk": "12.1.0",
+  "deprecated_since_zapp_sdk": "",
+  "unsupported_since_zapp_sdk": "",
+  "react_native": false,
+  "custom_configuration_fields": [
+    {
+      "type": "text",
+      "key": "swrve_account_id",
+      "tooltip_text": "Swrve Account Id"
+    },
+    {
+      "type": "text",
+      "key": "swrve_sandbox_key",
+      "tooltip_text": "Swrve Sandbox Key"
+    },
+    {
+      "type": "text",
+      "key": "swrve_production_key",
+      "tooltip_text": "Swrve Production Key"
+    }
+  ]
+}
