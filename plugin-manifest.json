@@ -6,7 +6,7 @@
   },
   "dependency_repository_url": [
     {
-      "url": "https://github.com/hussein-yassine/ZapAnalyticsPluginSwrve-Android.git"
+      "url": "https://github.com/hussein-yassine/ZappAnalyticsPluginSwrve.git"
     }
   ],
   "platform": "android",
