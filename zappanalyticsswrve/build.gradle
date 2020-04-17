@@ -67,19 +67,6 @@ android {
     lintOptions {
         abortOnError false
     }
-/*packagingOptions {
-        exclude 'jsr305_annotations/Jsr305_annotations.gwt.xml'
-    }*/
-    // As our SDK uses proguard, we need to include this as otherwise will fail with an error when performing
-    // the tests when using the closed SDK.
-    // (https://github.com/robolectric/robolectric-gradle-plugin/issues/144#issuecomment-265899560)
-    /*testOptions {
-        unitTests {
-            all {
-                jvmArgs '-noverify'
-            }
-        }
-    }*/
 
     repositories {
         jcenter { url = 'https://dl.bintray.com/swrve-inc/android' }
@@ -124,10 +111,10 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.3'
+        classpath 'com.android.tools.build:gradle:3.6.2'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         classpath "org.jetbrains.dokka:dokka-android-gradle-plugin:0.9.17"
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5'
     }
 }
 

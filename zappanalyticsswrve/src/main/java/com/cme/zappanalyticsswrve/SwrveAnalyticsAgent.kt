@@ -1,8 +1,6 @@
-package com.cme.swrveplugin_android
+package com.cme.zappanalyticsswrve
 
-import android.app.Activity
 import android.content.Context
-import android.util.Log
 import com.applicaster.analytics.BaseAnalyticsAgent
 import com.applicaster.util.StringUtil
 import com.swrve.sdk.SwrveSDK

@@ -1,4 +1,4 @@
-package com.cme.swrveplugin_android
+package com.cme.zappanalyticsswrve
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

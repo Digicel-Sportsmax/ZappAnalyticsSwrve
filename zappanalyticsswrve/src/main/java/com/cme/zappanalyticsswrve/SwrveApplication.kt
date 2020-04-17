@@ -1,17 +1,9 @@
-package com.cme.swrveplugin_android
+package com.cme.zappanalyticsswrve
 
-import android.app.Application
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.util.Log
-import com.applicaster.app.CustomApplication
-import com.applicaster.digicelloginplugin.SWRVE_ACCOUNT_ID
-import com.applicaster.digicelloginplugin.SWRVE_PRODUCTION_KEY
-import com.applicaster.digicelloginplugin.SWRVE_SANDBOX_KEY
+import com.applicaster.app.CustomApplication 
 import com.swrve.sdk.SwrveInitMode
-import com.swrve.sdk.SwrveNotificationConfig
 import com.swrve.sdk.SwrveSDK
 import com.swrve.sdk.config.SwrveConfig
 import com.swrve.sdk.config.SwrveStack

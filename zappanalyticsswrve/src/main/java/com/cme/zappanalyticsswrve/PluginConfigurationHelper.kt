@@ -1,4 +1,4 @@
-package com.cme.swrveplugin_android
+package com.cme.zappanalyticsswrve
 
 object PluginConfigurationHelper {
 

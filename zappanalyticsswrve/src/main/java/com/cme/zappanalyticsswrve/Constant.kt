@@ -1,4 +1,4 @@
-package com.applicaster.digicelloginplugin
+package com.cme.zappanalyticsswrve
 
 
 const val SWRVE_ACCOUNT_ID = "swrve_account_id"
