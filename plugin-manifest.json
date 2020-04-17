@@ -6,13 +6,16 @@
   },
   "dependency_repository_url": [
     {
+      "url": "https://dl.bintray.com/swrve-inc/android"
+    },
+    {
       "url": "https://github.com/hussein-yassine-cme/ZappAnalyticsSwrve.git"
     }
   ],
   "platform": "android",
   "author_name": "Hussein Yassine",
   "author_email": "hussein.yassine@gotocme.com",
-  "manifest_version": "0.0.10",
+  "manifest_version": "0.0.11",
   "name": "ZappAnalyticsPluginSwrve",
   "description": "ZappAnalyticsPluginSwrve",
   "type": "analytics",
@@ -20,8 +23,10 @@
   "ui_builder_support": true,
   "screen": false,
   "dependency_name": "com.applicaster:ZappAnalyticsPluginSwrve",
-  "dependency_version": "0.0.10",
-  "whitelisted_account_ids": ["5af949534da8f300080050f9"],
+  "dependency_version": "0.0.11",
+  "whitelisted_account_ids": [
+    "5af949534da8f300080050f9"
+  ],
   "min_zapp_sdk": "11.2.0",
   "deprecated_since_zapp_sdk": "",
   "unsupported_since_zapp_sdk": "",
