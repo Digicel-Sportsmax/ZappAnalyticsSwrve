@@ -125,15 +125,10 @@ def getVersionName = { ->
     try {
         def stdout = new ByteArrayOutputStream()
         exec {
-            commandLine 'git', 'describe', '--match', 'android-*', '--abbrev=0', '--tags'
+            commandLine 'git', 'describe', '--abbrev=0', '--tags'
             standardOutput = stdout
         }
-        def tag = stdout.toString().trim()
-        String[] arr = tag.split('-')
-        if (arr.length > 1) {
-            return arr[1]
-        }
-        return arr[0]
+        return stdout.toString().trim()
     }
     catch (ignored) {
         println 'catch'
@@ -151,10 +146,10 @@ project.afterEvaluate {
             mavenJava(MavenPublication) {
                 groupId GROUP
 
-                def versionFromTag = getVersionName()
+                def versionFromTag = VERSION_NAME
                 if (versionFromTag != null) {
                     // Check if version from tag equals to version from properties
-                    if (!compareVersions(versionFromTag, VERSION))
+                    if (!compareVersions(versionFromTag, VERSION_NAME))
                         throw new Exception("Incomparable version value from tag and properties!")
 
                     // There is a tag existing on the current commit - we can upload to Bintray
