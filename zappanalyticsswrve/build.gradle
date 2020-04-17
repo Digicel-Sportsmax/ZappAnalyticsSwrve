@@ -85,8 +85,6 @@ android {
 }
 
 dependencies {
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.swrve.sdk.android:swrve:7.0.0'
 
     // Applicaster SDK

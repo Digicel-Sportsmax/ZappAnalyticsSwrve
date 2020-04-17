@@ -7,6 +7,8 @@
     <!-- End of changes -->
 
     <application
+        tools:replace="android:appComponentFactory"
+        android:appComponentFactory="android.v7"
         android:allowBackup="true"
         android:name="com.cme.zappanalyticsswrve.SwrveApplication">
     </application>
