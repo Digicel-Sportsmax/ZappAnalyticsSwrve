@@ -13,9 +13,9 @@
     }
   ],
   "platform": "android",
-  "author_name": "Hussein Yassine",
-  "author_email": "hussein.yassine@gotocme.com",
-  "manifest_version": "0.0.17",
+  "author_name": "Elias bou nader",
+  "author_email": "elias.bounader@gotocme.com",
+  "manifest_version": "0.0.19",
   "name": "ZappAnalyticsPluginSwrve",
   "description": "ZappAnalyticsPluginSwrve",
   "type": "analytics",
@@ -23,7 +23,7 @@
   "ui_builder_support": true,
   "screen": false,
   "dependency_name": "com.applicaster:ZappAnalyticsPluginSwrve",
-  "dependency_version": "0.0.17",
+  "dependency_version": "0.0.19",
   "whitelisted_account_ids": [
     "5af949534da8f300080050f9"
   ],
