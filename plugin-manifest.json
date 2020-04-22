@@ -1,7 +1,7 @@
 {
   "api": {
-    "require_startup_execution": false,
-    "class_name": "ZappAnalyticsSwrve.SwrveAnalyticsAgent",
+    "require_startup_execution": true,
+    "class_name": "com.cme.zappanalyticsswrve.SwrveAnalyticsAgent",
     "modules": []
   },
   "dependency_repository_url": [
@@ -12,10 +12,10 @@
       "url": "https://github.com/hussein-yassine-cme/ZappAnalyticsSwrve.git"
     }
   ],
-  "platform": "android",
-  "author_name": "Elias bou nader",
-  "author_email": "elias.bounader@gotocme.com",
-  "manifest_version": "0.0.19",
+  "platform": "android",  
+  "author_name": "Hussein Yassine",
+  "author_email": "hussein.yassine@gotocme.com",
+  "manifest_version": "0.0.20",
   "name": "ZappAnalyticsPluginSwrve",
   "description": "ZappAnalyticsPluginSwrve",
   "type": "analytics",
@@ -23,7 +23,7 @@
   "ui_builder_support": true,
   "screen": false,
   "dependency_name": "com.applicaster:ZappAnalyticsPluginSwrve",
-  "dependency_version": "0.0.19",
+  "dependency_version": "0.0.20",
   "whitelisted_account_ids": [
     "5af949534da8f300080050f9"
   ],

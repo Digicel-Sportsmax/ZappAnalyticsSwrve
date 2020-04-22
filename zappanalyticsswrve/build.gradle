@@ -21,7 +21,7 @@ repositories {
 }
 
 buildscript {
-    ext.kotlin_version = '1.3.71'
+    ext.kotlin_version = '1.2.0'
     repositories {
         google()
         jcenter()
@@ -30,7 +30,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.3'
+        classpath 'com.android.tools.build:gradle:3.1.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
@@ -92,8 +92,7 @@ dependencies {
     implementation 'com.swrve.sdk.android:swrve-firebase:6.3.0'
 
     // Applicaster SDK
-    //def applicasterSDKPath = 'com.applicaster:applicaster-android-sdk:4.0.+'
-    def applicasterSDKPath = 'com.applicaster:applicaster-android-sdk:2.32.39'
+    def applicasterSDKPath = 'com.applicaster:applicaster-android-sdk:4.0.+'
     // Check if an open SDK is defined - if not use the closed one.
     def devSDK = findProject(':applicaster-android-sdk')
     if (devSDK != null) {
@@ -116,11 +115,11 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.2'
+        classpath 'com.android.tools.build:gradle:3.1.3'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         classpath "org.jetbrains.dokka:dokka-android-gradle-plugin:0.9.17"
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5'
-        classpath 'com.google.gms:google-services:3.2.1'
+        classpath 'com.google.gms:google-services:3.1.0'
     }
 }
 
