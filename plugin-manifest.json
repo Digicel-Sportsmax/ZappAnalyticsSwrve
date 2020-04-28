@@ -1,6 +1,6 @@
 {
   "api": {
-    "require_startup_execution": true,
+    "require_startup_execution": false,
     "class_name": "com.cme.zappanalyticsswrve.SwrveAnalyticsAgent",
     "modules": []
   },
@@ -15,7 +15,7 @@
   "platform": "android",  
   "author_name": "Hussein Yassine",
   "author_email": "hussein.yassine@gotocme.com",
-  "manifest_version": "0.0.20",
+  "manifest_version": "0.0.21",
   "name": "ZappAnalyticsPluginSwrve",
   "description": "ZappAnalyticsPluginSwrve",
   "type": "analytics",
@@ -23,7 +23,7 @@
   "ui_builder_support": true,
   "screen": false,
   "dependency_name": "com.applicaster:ZappAnalyticsPluginSwrve",
-  "dependency_version": "0.0.20",
+  "dependency_version": "0.0.21",
   "whitelisted_account_ids": [
     "5af949534da8f300080050f9"
   ],
@@ -34,8 +34,13 @@
   "custom_configuration_fields": [
     {
       "type": "text",
-      "key": "swrve_account_id",
-      "tooltip_text": "Swrve Account Id"
+      "key": "swrve_account_id_sandbox",
+      "tooltip_text": "Sandbox Swrve Account Id"
+    },
+    {
+      "type": "text",
+      "key": "swrve_account_id_production",
+      "tooltip_text": "Production Swrve Account Id"
     },
     {
       "type": "text",

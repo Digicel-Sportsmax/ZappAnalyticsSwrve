@@ -1,8 +1,10 @@
 package com.cme.zappanalyticsswrve
 
 import android.content.Context
+import android.widget.Toast
 import com.applicaster.analytics.BaseAnalyticsAgent
 import com.applicaster.util.StringUtil
+import com.google.firebase.FirebaseApp
 import com.swrve.sdk.SwrveSDK
 import java.util.*
 
@@ -36,9 +38,10 @@ class SwrveAnalyticsAgent : BaseAnalyticsAgent() {
      */
     override fun initializeAnalyticsAgent(context: Context?) {
         super.initializeAnalyticsAgent(context)
-
-        //SwrveSDK.g
-
+        context?.let {
+            Toast.makeText(it, "Analytics Agent", Toast.LENGTH_LONG).show()
+            FirebaseApp.initializeApp(context)
+        }
     }
 
     override fun setParams(params: Map<*, *>) {
