@@ -7,8 +7,7 @@
     <!-- End of changes -->
 
     <application
-        android:allowBackup="true"
-        android:name="com.cme.zappanalyticsswrve.SwrveApplication">
+        android:allowBackup="true">
 
         <service android:name="com.swrve.sdk.SwrveFirebaseMessagingService">
             <intent-filter>
