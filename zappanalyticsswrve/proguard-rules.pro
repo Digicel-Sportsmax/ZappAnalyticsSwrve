@@ -19,3 +19,8 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-ignorewarnings
+-dontshrink
+
+-keep class com.cme.zappanalyticsswrve.**
+-keep class com.cme.zappanalyticsswrve.** { *; }
