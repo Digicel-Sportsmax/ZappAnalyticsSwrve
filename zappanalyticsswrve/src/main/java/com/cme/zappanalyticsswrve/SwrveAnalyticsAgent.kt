@@ -33,10 +33,10 @@ class SwrveAnalyticsAgent : BaseAnalyticsAgent() {
     private val ANONYMIZE_USER_IP_IDENTIFIER = "anonymize_user_ip"
     private val SCREEN_VIEWS_IDENTIFIER = "screen_views"
     private val DO_NOT_SET_CLIENT_ID = "do_not_set_client_id"
-    private var mobileAppAccountId: String? = null
-    private var anonymizeUserIp = false
-    private var screenViews = false
-    private var shouldSetClientId = false
+    //private var mobileAppAccountId: String? = null
+    //private var anonymizeUserIp = false
+    //private var screenViews = false
+    //private var shouldSetClientId = false
 
     // custom events
     private val PLAY_EVENT = "Play video"
@@ -92,7 +92,8 @@ class SwrveAnalyticsAgent : BaseAnalyticsAgent() {
             config.setNotificationListener { pushJson ->
                 Log.wtf("Received push", "of body: " + pushJson.toString(1))
             }
-            SwrveSDK.createInstance(customApp, appId, apiKey, config)
+            if (appId != 0 && apiKey.isNotEmpty())
+                SwrveSDK.createInstance(customApp, appId, apiKey, config)
         } catch (ex: IllegalArgumentException) {
             Log.e("SwrveDemo", "Could not initialize the Swrve SDK", ex)
         }
@@ -100,10 +101,8 @@ class SwrveAnalyticsAgent : BaseAnalyticsAgent() {
 
     override fun setParams(params: Map<*, *>) {
         super.setParams(params)
-        mobileAppAccountId = getValue(params, MOBILE_APP_ACCOUNT_ID_IDENTIFIER)
-        anonymizeUserIp = getValue(params, ANONYMIZE_USER_IP_IDENTIFIER) == "1"
-        screenViews = getValue(params, SCREEN_VIEWS_IDENTIFIER) == "1"
-        shouldSetClientId = getValue(params, DO_NOT_SET_CLIENT_ID) != "1"
+        val stringMap = params as Map<String, String>
+        PluginConfigurationHelper.setConfigurationMap(stringMap)
     }
 
     /**
@@ -128,14 +127,7 @@ class SwrveAnalyticsAgent : BaseAnalyticsAgent() {
      * @return a hash map of the configuration of the plugin
      */
     override fun getConfiguration(): Map<String, String>? {
-        val configuration =
-            super.getConfiguration()
-        if (mobileAppAccountId != null) {
-            configuration[MOBILE_APP_ACCOUNT_ID_IDENTIFIER] = mobileAppAccountId!!
-            configuration[ANONYMIZE_USER_IP_IDENTIFIER] = anonymizeUserIp.toString()
-            configuration[SCREEN_VIEWS_IDENTIFIER] = screenViews.toString()
-        }
-        return configuration
+        return super.getConfiguration()
     }
 
     override fun logEvent(eventName: String?) {
