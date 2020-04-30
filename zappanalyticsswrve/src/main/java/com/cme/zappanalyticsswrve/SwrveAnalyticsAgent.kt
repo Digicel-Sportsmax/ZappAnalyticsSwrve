@@ -54,7 +54,6 @@ class SwrveAnalyticsAgent : BaseAnalyticsAgent() {
 
     private fun init(context: Context){
         val customApp = context as? CustomApplication
-        Toast.makeText(context, "init Application", Toast.LENGTH_LONG).show()
         FirebaseApp.initializeApp(context)
         try {
             val config = SwrveConfig()
@@ -78,24 +77,22 @@ class SwrveAnalyticsAgent : BaseAnalyticsAgent() {
             val notificationConfig = SwrveNotificationConfig.Builder(R.mipmap.ic_launcher, R.mipmap.ic_launcher, channel)
             config.notificationConfig = notificationConfig.build()
 
-            /*val appId:Int
+            val appId:Int
             val apiKey: String
-            val isDebuggable = 0 != applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE
+            val isDebuggable = 0 != customApp?.applicationInfo?.flags ?: 0 and
+                    ApplicationInfo.FLAG_DEBUGGABLE
             if (isDebuggable){
                 appId = PluginConfigurationHelper.getConfigurationValue(SWRVE_ACCOUNT_ID_SANDBOX)?.toInt() ?: 0
                 apiKey = PluginConfigurationHelper.getConfigurationValue(SWRVE_SANDBOX_KEY) ?: ""
             }else{
                 appId = PluginConfigurationHelper.getConfigurationValue(SWRVE_ACCOUNT_ID_PRODUCTION)?.toInt() ?: 0
                 apiKey = PluginConfigurationHelper.getConfigurationValue(SWRVE_PRODUCTION_KEY) ?: ""
-            }*/
+            }
 
             config.setNotificationListener { pushJson ->
                 Log.wtf("Received push", "of body: " + pushJson.toString(1))
             }
-
-            Toast.makeText(context, "init SwrveSDK", Toast.LENGTH_LONG).show()
-            SwrveSDK.createInstance(customApp, 6883, "eMIb7GMt6Y60SgkeGJSp", config)
-            Toast.makeText(context, "after init SwrveSDK", Toast.LENGTH_LONG).show()
+            SwrveSDK.createInstance(customApp, appId, apiKey, config)
         } catch (ex: IllegalArgumentException) {
             Log.e("SwrveDemo", "Could not initialize the Swrve SDK", ex)
         }
