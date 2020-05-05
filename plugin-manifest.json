@@ -9,13 +9,13 @@
       "url": "https://dl.bintray.com/swrve-inc/android"
     },
     {
-      "url": "https://github.com/hussein-yassine-cme/ZappAnalyticsSwrve.git"
+      "url": "https://github.com/Digicel-Sportsmax/ZappAnalyticsSwrve.git"
     }
   ],
   "platform": "android",  
   "author_name": "Hussein Yassine",
   "author_email": "hussein.yassine@gotocme.com",
-  "manifest_version": "0.0.25",
+  "manifest_version": "0.0.26",
   "name": "ZappAnalyticsPluginSwrve",
   "description": "ZappAnalyticsPluginSwrve",
   "type": "analytics",
@@ -23,7 +23,7 @@
   "ui_builder_support": true,
   "screen": false,
   "dependency_name": "com.applicaster:ZappAnalyticsPluginSwrve",
-  "dependency_version": "0.0.25",
+  "dependency_version": "0.0.26",
   "whitelisted_account_ids": [
     "5af949534da8f300080050f9"
   ],
