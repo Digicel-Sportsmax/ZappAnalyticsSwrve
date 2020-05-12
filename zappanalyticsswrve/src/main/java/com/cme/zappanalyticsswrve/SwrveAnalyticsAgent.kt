@@ -132,7 +132,7 @@ class SwrveAnalyticsAgent : BaseAnalyticsAgent() {
 
     override fun logEvent(eventName: String?) {
         super.logEvent(eventName)
-        SwrveSDK.event(eventName)
+        SwrveSDK.event(eventName, null)
     }
 
     /**
@@ -140,17 +140,17 @@ class SwrveAnalyticsAgent : BaseAnalyticsAgent() {
      * @param eventName name of the event logged
      * @param params extra data
      */
-    override fun logEvent(
-        eventName: String?,
-        params: TreeMap<String?, String?>?
-    ) {
+    override fun logEvent(eventName: String?, params: TreeMap<String, String>?) {
         super.logEvent(eventName, params)
-        val label: String? = params?.let {
+        Log.wtf("** eventName", "is " + eventName)
+        val label: String = params?.let { it ->
             getLabel(it)
-        }
+        } ?: ""
+        Log.wtf("** params", "is " + params)
+        SwrveSDK.event(eventName,params)
     }
 
-    private fun getLabel(map: TreeMap<String?, String?>): String? {
+    private fun getLabel(map: TreeMap<String, String>): String? {
         val notAvailableString = "N/A"
         // Build the labels param.
         var labelsString: String? = null
@@ -173,6 +173,30 @@ class SwrveAnalyticsAgent : BaseAnalyticsAgent() {
         return labelsString
     }
 
+    override fun startTimedEvent(eventName: String?) {
+        super.startTimedEvent(eventName)
+        logEvent(eventName)
+    }
+
+    override fun startTimedEvent(eventName: String?, params: TreeMap<String, String>) {
+        super.startTimedEvent(eventName, params)
+        logEvent(eventName, params)
+    }
+
+    override fun endTimedEvent(eventName: String?) {
+        super.endTimedEvent(eventName)
+        logEvent(eventName)
+    }
+
+    override fun endTimedEvent(eventName: String?, params: TreeMap<String, String>) {
+        super.endTimedEvent(eventName, params)
+        logEvent(eventName, params)
+    }
+
+    override fun logPlayEvent(currentPosition: Long) {
+        super.logPlayEvent(currentPosition)
+        logEvent(PLAY_EVENT)
+    }
 
     /**
      * Set the User Id (UUID) on the Analytics Agent
@@ -181,6 +205,11 @@ class SwrveAnalyticsAgent : BaseAnalyticsAgent() {
      */
     override fun sendUserID(userId: String?) {
         super.sendUserID(userId)
+    }
+
+    override fun logVideoEvent(eventName: String?, params: TreeMap<String, String>) {
+        super.logVideoEvent(eventName, params)
+        logEvent(eventName, params)
     }
 
     /**
@@ -201,5 +230,12 @@ class SwrveAnalyticsAgent : BaseAnalyticsAgent() {
     override fun logStopEvent(currentPosition: Long) {
         super.logStopEvent(currentPosition)
         logEvent(STOP_EVENT)
+    }
+
+    override fun setScreenView(activity: Activity?, screenView: String) {
+        super.setScreenView(activity, screenView)
+        val map = TreeMap<String, String>()
+        map["Screen name"] = screenView
+        logEvent("Screen Visit."+screenView)
     }
 }
