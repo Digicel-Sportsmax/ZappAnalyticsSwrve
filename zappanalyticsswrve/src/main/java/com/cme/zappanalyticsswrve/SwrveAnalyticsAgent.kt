@@ -236,6 +236,6 @@ class SwrveAnalyticsAgent : BaseAnalyticsAgent() {
         super.setScreenView(activity, screenView)
         val map = TreeMap<String, String>()
         map["Screen name"] = screenView
-        logEvent("Screen Visit."+screenView)
+        logEvent("Screen Visit",map)
     }
 }
