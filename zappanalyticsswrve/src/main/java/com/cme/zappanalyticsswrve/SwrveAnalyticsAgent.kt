@@ -23,6 +23,10 @@ class SwrveAnalyticsAgent : BaseAnalyticsAgent() {
 
     private val TAG: String = SwrveAnalyticsAgent::class.java.simpleName
 
+    private val MAX_SCREEN_NAME_LONG = 35
+    private val MAX_PARAM_NAME_LONG = 40
+    private val MAX_PARAM_VALUE_LONG = 100
+
     /**
      * This variables are created for Google Analytics purposes.
      * You can delete all this variables when you doing your plugin.
@@ -132,7 +136,9 @@ class SwrveAnalyticsAgent : BaseAnalyticsAgent() {
 
     override fun logEvent(eventName: String?) {
         super.logEvent(eventName)
-        SwrveSDK.event(eventName, null)
+        eventName?.let { it ->
+            SwrveSDK.event(it.alphaNumericOnly().cutToMaxLength(MAX_PARAM_NAME_LONG), null)
+        }
     }
 
     /**
@@ -143,35 +149,18 @@ class SwrveAnalyticsAgent : BaseAnalyticsAgent() {
     override fun logEvent(eventName: String?, params: TreeMap<String, String>?) {
         super.logEvent(eventName, params)
         Log.wtf("** eventName", "is " + eventName)
-        val label: String = params?.let { it ->
-            getLabel(it)
-        } ?: ""
         Log.wtf("** params", "is " + params)
-        SwrveSDK.event(eventName,params)
+        params?.let { it ->
+            val newTree = TreeMap<String, String>()
+            for ((key, value) in it.entries) {
+                newTree[key.alphaNumericOnly().cutToMaxLength(MAX_PARAM_NAME_LONG)] = value.alphaNumericOnly().cutToMaxLength(MAX_PARAM_VALUE_LONG)
+            }
+            eventName?.let { event ->
+                SwrveSDK.event(event.alphaNumericOnly().cutToMaxLength(MAX_PARAM_NAME_LONG),newTree)
+            }
+        }
     }
 
-    private fun getLabel(map: TreeMap<String, String>): String? {
-        val notAvailableString = "N/A"
-        // Build the labels param.
-        var labelsString: String? = null
-        if (map != null) {
-            val labels = StringBuilder()
-            for (key in map.keys) {
-                var value = map[key]
-                if (StringUtil.isEmpty(value)) {
-                    value = notAvailableString
-                }
-                val label = String.format("%s=%s;", key, value)
-                labels.append(label)
-            }
-            if (labels.length > 0) {
-                // If it's not empty, we need to remove the last ';'
-                labels.setLength(labels.length - 1)
-            }
-            labelsString = labels.toString()
-        }
-        return labelsString
-    }
 
     override fun startTimedEvent(eventName: String?) {
         super.startTimedEvent(eventName)
@@ -235,7 +224,26 @@ class SwrveAnalyticsAgent : BaseAnalyticsAgent() {
     override fun setScreenView(activity: Activity?, screenView: String) {
         super.setScreenView(activity, screenView)
         val map = TreeMap<String, String>()
-        map["Screen name"] = screenView
+        val screenName = if (screenView.contains("ATOM Article", ignoreCase = true)){
+            val title = screenView.replace("ATOM Article", "Article").trim()
+              title
+        }else{
+             screenView
+        }
+        map["Screen name"] = screenName.cutToMaxLength(MAX_SCREEN_NAME_LONG)
         logEvent("screen_visit",map)
     }
+}
+
+fun String.cutToMaxLength(maxLength: Int): String{
+    return if (this.length > maxLength){
+        this.substring(0, maxLength)
+    }else{
+        this
+    }
+}
+
+fun String.alphaNumericOnly(): String{
+    val regex = Regex("[^A-Za-z0-9 ]")
+    return regex.replace(this, "").replace(" ","_")
 }
