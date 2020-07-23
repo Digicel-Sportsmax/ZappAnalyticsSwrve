@@ -79,6 +79,7 @@ class SwrveAnalyticsAgent : BaseAnalyticsAgent() {
             }
 
             val notificationConfig = SwrveNotificationConfig.Builder(R.drawable.appoxee_custom_icon, R.drawable.appoxee_custom_icon, channel)
+            notificationConfig.largeIconDrawableId(R.drawable.notification_large_icon)
             config.notificationConfig = notificationConfig.build()
 
             val appId:Int
