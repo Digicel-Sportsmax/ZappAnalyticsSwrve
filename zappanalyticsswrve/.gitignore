@@ -1,1 +1,10 @@
 /build
+
+# Removing mipmap folder to avoid icon issues on the app
+
+/src/main/res/mipmap-anydpi-v26
+/src/main/res/mipmap-hdpi
+/src/main/res/mipmap-mdpi
+/src/main/res/mipmap-xhdpi
+/src/main/res/mipmap-xxhdpi
+/src/main/res/mipmap-xxxhdpi
