@@ -78,7 +78,7 @@ class SwrveAnalyticsAgent : BaseAnalyticsAgent() {
                 }
             }
 
-            val notificationConfig = SwrveNotificationConfig.Builder(R.mipmap.ic_launcher, R.mipmap.ic_launcher, channel)
+            val notificationConfig = SwrveNotificationConfig.Builder(R.drawable.appoxee_custom_icon, R.drawable.appoxee_custom_icon, channel)
             config.notificationConfig = notificationConfig.build()
 
             val appId:Int
