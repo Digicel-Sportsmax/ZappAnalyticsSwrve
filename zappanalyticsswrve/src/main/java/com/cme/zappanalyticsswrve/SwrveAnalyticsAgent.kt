@@ -8,6 +8,7 @@ import android.content.pm.ApplicationInfo
 import android.os.Build
 import android.util.Log
 import android.widget.Toast
+import com.applicaster.activities.base.AppIntroActivity
 import com.applicaster.analytics.BaseAnalyticsAgent
 import com.applicaster.app.CustomApplication
 import com.applicaster.util.StringUtil
@@ -79,6 +80,7 @@ class SwrveAnalyticsAgent : BaseAnalyticsAgent() {
             }
 
             val notificationConfig = SwrveNotificationConfig.Builder(R.drawable.appoxee_custom_icon, R.drawable.appoxee_custom_icon, channel)
+            notificationConfig.accentColorHex("#FF0000")
             notificationConfig.largeIconDrawableId(R.drawable.notification_large_icon)
             config.notificationConfig = notificationConfig.build()
 
@@ -157,7 +159,21 @@ class SwrveAnalyticsAgent : BaseAnalyticsAgent() {
                 newTree[key.alphaNumericOnly().cutToMaxLength(MAX_PARAM_NAME_LONG)] = value.alphaNumericOnly().cutToMaxLength(MAX_PARAM_VALUE_LONG)
             }
             eventName?.let { event ->
-                SwrveSDK.event(event.alphaNumericOnly().cutToMaxLength(MAX_PARAM_NAME_LONG),newTree)
+                var articleViewedEvent: String? = null
+                for((key, value) in newTree.entries){
+                    if(key.equals("Screen_Name", ignoreCase = true) && (value.startsWith("Article") || value.startsWith(" Article"))){
+                        articleViewedEvent = "Article_Viewed"
+                    }
+                }
+                when {
+                    articleViewedEvent != null -> {
+                        SwrveSDK.event(articleViewedEvent.alphaNumericOnly().cutToMaxLength(MAX_PARAM_NAME_LONG),newTree)
+                    }
+                    else -> {
+                        SwrveSDK.event(event.alphaNumericOnly().cutToMaxLength(MAX_PARAM_NAME_LONG),newTree)
+                    }
+                }
+
             }
         }
     }
@@ -245,6 +261,6 @@ fun String.cutToMaxLength(maxLength: Int): String{
 }
 
 fun String.alphaNumericOnly(): String{
-    val regex = Regex("[^A-Za-z0-9 ]")
-    return regex.replace(this, "").replace(" ","_")
+    val regex = Regex("[^A-Za-z0-9_ ]")
+    return regex.replace(this.trim(), "").replace(" ", "_")
 }
