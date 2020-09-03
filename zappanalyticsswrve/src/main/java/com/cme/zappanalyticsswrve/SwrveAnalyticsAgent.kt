@@ -86,9 +86,8 @@ class SwrveAnalyticsAgent : BaseAnalyticsAgent() {
 
             val appId:Int
             val apiKey: String
-            val isDebuggable = 0 != customApp?.applicationInfo?.flags ?: 0 and
-                    ApplicationInfo.FLAG_DEBUGGABLE
-            if (isDebuggable){
+            val isRelease = BuildConfig.BUILD_TYPE == "release"
+            if (!isRelease){
                 appId = PluginConfigurationHelper.getConfigurationValue(SWRVE_ACCOUNT_ID_SANDBOX)?.toInt() ?: 0
                 apiKey = PluginConfigurationHelper.getConfigurationValue(SWRVE_SANDBOX_KEY) ?: ""
             }else{
