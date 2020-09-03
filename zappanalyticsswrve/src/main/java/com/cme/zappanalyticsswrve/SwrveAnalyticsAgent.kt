@@ -84,7 +84,7 @@ class SwrveAnalyticsAgent : BaseAnalyticsAgent() {
             notificationConfig.largeIconDrawableId(R.drawable.notification_large_icon)
             config.notificationConfig = notificationConfig.build()
 
-            al appId: Int
+            val appId: Int
             val apiKey: String
             val isRelease = BuildConfig.BUILD_TYPE
             if (!isRelease.equals("release", ignoreCase = true))
