@@ -84,16 +84,22 @@ class SwrveAnalyticsAgent : BaseAnalyticsAgent() {
             notificationConfig.largeIconDrawableId(R.drawable.notification_large_icon)
             config.notificationConfig = notificationConfig.build()
 
-            val appId:Int
+            al appId: Int
             val apiKey: String
-            val isRelease = BuildConfig.BUILD_TYPE == "release"
-            if (!isRelease){
-                appId = PluginConfigurationHelper.getConfigurationValue(SWRVE_ACCOUNT_ID_SANDBOX)?.toInt() ?: 0
+            val isRelease = BuildConfig.BUILD_TYPE
+            if (!isRelease.equals("release", ignoreCase = true))
+            {
+                appId = PluginConfigurationHelper.getConfigurationValue(SWRVE_ACCOUNT_ID_SANDBOX)?.toInt()
+                        ?: 0
                 apiKey = PluginConfigurationHelper.getConfigurationValue(SWRVE_SANDBOX_KEY) ?: ""
-            }else{
-                appId = PluginConfigurationHelper.getConfigurationValue(SWRVE_ACCOUNT_ID_PRODUCTION)?.toInt() ?: 0
+            }
+            else
+            {
+                appId = PluginConfigurationHelper.getConfigurationValue(SWRVE_ACCOUNT_ID_PRODUCTION)?.toInt()
+                        ?: 0
                 apiKey = PluginConfigurationHelper.getConfigurationValue(SWRVE_PRODUCTION_KEY) ?: ""
             }
+            Log.wtf("Swrve type:", isRelease + appId + apiKey)
 
             config.setNotificationListener { pushJson ->
                 Log.wtf("Received push", "of body: " + pushJson.toString(1))
