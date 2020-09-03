@@ -250,7 +250,7 @@ task androidJavadocs(type: Javadoc) {
 
 task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
     classifier = 'javadoc'
-    from "$buildDir/javadoc"
+    from androidJavadocs.destinationDir
 }
 
 task androidSourcesJar(type: Jar) {
